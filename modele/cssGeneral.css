@@ -1,14 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap');
+
 html {
-font:normal 100%/1.2em "Trebuchet MS",Verdana,Helvetica,Arial,sans-serif;
+font:normal 100%/1.2em 'Poppins',sans-serif;
 }
+
+#logo {
+	filter: hue-rotate(-75deg) brightness(110%);
+	width:150px;
+}
+
 body{
+	margin: 0%;
 	padding : 0% 5%;
+	background-color: #C7F9CC;
 }
 #accueil{
-	width=60%;
 	text-align: center;
-	padding-top: 7%;
-	color: #33d64c ;
+	padding-top: 8%;
+	color: #0D1E29 ;
 }
 
 
@@ -46,24 +55,29 @@ input[type="submit"]
 	width: 30%;
 }
 .erreur{ 
-   background-color:rgb(237,210,229);
-   color:rgb(203,28,128);
+   background-color:#AF0B0B;
+   color:black;
    font-size:1.1em;
-   width:95%;
+   border-radius: 8px;
 }
 .message{ 
-   background-color:rgb(99, 184, 255);
-   color:rgb(0,0,205);
+   background-color:#38A3A5;
+   color: black;
    font-size:1.1em;
-   width:95%;
+   border-radius: 8px;
 }
 
 #bandeau {
-
+display: flex;
+justify-content: space-around;
 }
 
 #menu{
+display: flex;
+justify-content: space-around;
 height: 1.8em ;
+padding: 0%;
+margin-top: 2%;
 }
 
 #categories{
@@ -71,7 +85,7 @@ float:left;
 }
 
 #produits{
-padding:0 150px;
+padding:0px 150px;
 }
 
 #contenu{
@@ -79,30 +93,33 @@ padding:0 150px;
 }
 
 #menu li {
-		list-style-type: none;
-		list-style-image:none;
-		float : left;
-		text-align: center;
-		width: 240px ; 
-		border: 1px solid #600 ; 
-		margin-right: 2px ; 
-		color: #fff ; 
-		background: #ccff11 ;
+	list-style-type: none;
+	list-style-image:none;
+	float : left;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	margin: 4px;
+	color: #fff ; 
+	background: #80ED99 ;
+	border-radius: 8px;
 }
 
 #menu li a , #categories li a {
 		text-decoration:none;
+		color:#0D1E29;
 }
 
 #categories li {
-		list-style-type: none;
-		list-style-image:none;
-		/*float:left; */
+	list-style-type: none;
+	list-style-image:none;
     margin-right: 1px ;
-    border:1px solid #600;
     width:100px;
     text-align:center;
-background:#ccff11;
+	background:#80ED99;
+	margin: 2px ; 
+	padding: 5px;
+	border-radius: 8px;
 }
 
 
@@ -113,7 +130,7 @@ background:#ccff11;
     width:175px;
     text-align:center;
     height:205px;
-    font: 1em "Trebuchet MS",Arial,sans-serif ;
+    font: 1em "Poppins",sans-serif ;
 }
 .commande{
 	position : relative;
@@ -128,15 +145,16 @@ background:#ccff11;
 	bottom:80px;
 }
 div.card{
+
     position : relative;
     width:180px;
     height : 250px;
     float:left;
     padding:10px;
     margin : 10px;
-    background-color : var(--fondC);
-    box-shadow: 2px 2px 6px #bbb;
+    box-shadow: 2px 2px 24px #0d1e2960;
 	border-radius: 8px;
+	background-color: white;
 }
 div.photoCard>img{
     max-width : 200px;
@@ -145,7 +163,7 @@ div.photoCard>img{
 }
 div.descrCard{
     top:0px;
-	font: .8em "Trebuchet MS",Arial,sans-serif ;
+	font: .8em "Poppins",sans-serif ;
 }
 div.prixCard{
 	text-align:center;

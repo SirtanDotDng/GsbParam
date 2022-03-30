@@ -16,8 +16,8 @@
  * pour effectuer ensuite des requêtes
 */
 function connexionPDO() {
-    $login = 'GSB';
-    $mdp = 'pass';
+    $login = 'param';
+    $mdp = 'gsbparam';
     $bd = 'GsbParam';
     $serveur = 'localhost';
 

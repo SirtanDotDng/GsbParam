@@ -157,21 +157,41 @@ div.card{
 	background-color: white;
 }
 div.photoCard>img{
-    max-width : 200px;
+    min-width : 100%;
     max-height: 140px;
-    
+	object-fit: cover;
+	border-radius: 8px;
 }
 div.descrCard{
     top:0px;
-	font: .8em "Poppins",sans-serif ;
+	font: .8em "Poppins",sans-serif;
 }
 div.prixCard{
 	text-align:center;
 	position:absolute;
     bottom:50px;
-	background-color :#EFEFEF;
+	background-color :#FFF;
 }
 div.imgCard{
     position:absolute;
-    bottom:5px;
+    bottom:15px;
+}
+
+.tocart{
+	padding: 6px 22px 6px 20px;
+	text-align: center;
+	background: #80ED99 ;
+	border-radius: 8px;
+	text-decoration:none;
+	color:#0D1E29;
+}
+
+.tocart:hover{
+	transition-duration: 250ms;
+	padding: 6px 22px 6px 20px;
+	text-align: center;
+	background: #C7F9CC ;
+	border-radius: 8px;
+	text-decoration:none;
+	color:#0D1E29;
 }

@@ -1,19 +1,19 @@
-<h1> produits de la catégorie 
+<h1> Produits de la catégorie 
 <?php	
 $action = $_REQUEST['categorie'];
 switch($action)
 {
-	case 'CH':
+	case '1':
 	{
   		$categorie = "cheveux" ;
 		break;
 	}
-	case 'FO' :
+	case '2' :
 	{
 		$categorie = "forme" ;
 		break;
 	}
-	case 'PS' :
+	case '3' :
 	{
 		$categorie = "protection solaire" ;
 		break;
@@ -28,18 +28,16 @@ switch($action)
 foreach( $lesProduits as $unProduit) 
 { 	// récupération des informations du produit
 	$id = $unProduit['id'];
-	$description = $unProduit['description'];
+	$nom = $unProduit['nom'];
 	$prix=$unProduit['prix'];
 	$image = $unProduit['image'];
 	// affichage d'un produit avec ses informations
 	?>	
-	<div class="card">
+	<div onClick="window.location = 'index.php?uc=voirProduits&produit=<?php echo $id ?>&action=voirDetailsProduit" class="card">
 			<div class="photoCard"><img src="<?php echo $image ?>" alt=image /></div>
-			<div class="descrCard"><?php echo $description ?></div>
+			<div class="descrCard"><?php echo $nom ?></div>
 			<div class="prixCard"><?php echo $prix."€" ?></div>
-			<div class="imgCard"><a href="index.php?uc=voirProduits&categorie=<?php echo $categorie ?>&produit=<?php echo $id ?>&action=ajouterAuPanier"> 
-			<img src="images/mettrepanier.png" TITLE="Ajouter au panier" alt="Mettre au panier"> </a></div>
-			
+			<div class="imgCard"><a class="tocart" href="index.php?uc=voirProduits&produit=<?php echo $id ?>&action=ajouterAuPanier">Ajouter au panier</a></div>
 	</div>
 <?php			
 } // fin du foreach qui parcourt les produits

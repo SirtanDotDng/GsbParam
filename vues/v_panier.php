@@ -6,14 +6,14 @@ foreach( $lesProduitsDuPanier as $unProduit)
 {
 	// récupération des données d'un produit
 	$id = $unProduit['id'];
-	$description = $unProduit['description'];
+	$nom = $unProduit['nom'];
 	$image = $unProduit['image'];
 	$prix = $unProduit['prix'];
 	// affichage
 	?>
 	<div class="card">
 			<div class="photoCard"><img src="<?php echo $image ?>" alt="image descriptive" /></div>
-	<div class="descrCard"><?php echo	$description;?>	</div>
+	<div class="descrCard"><?php echo	$nom;?>	</div>
 	<div class="prixCard"><?php echo $prix."€" ?></div>
 	<div class="imgCard"><a href="index.php?uc=gererPanier&produit=<?php echo $id ?>&action=supprimerUnProduit" onclick="return confirm('Voulez-vous vraiment retirer cet article ?');">
 	<img src="images/retirerpanier.png" TITLE="Retirer du panier" alt="retirer du panier"></a></div>

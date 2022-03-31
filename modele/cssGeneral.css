@@ -148,7 +148,7 @@ div.card{
 
     position : relative;
     width:180px;
-    height : 250px;
+    height : 300px;
     float:left;
     padding:10px;
     margin : 10px;
@@ -156,10 +156,14 @@ div.card{
 	border-radius: 8px;
 	background-color: white;
 }
+
+div.card:hover{
+	transition-duration: 250ms;
+	box-shadow: 4px 4px 24px #00000080;
+}
+
 div.photoCard>img{
-    min-width : 100%;
-    max-height: 140px;
-	object-fit: cover;
+	width: 100%;
 	border-radius: 8px;
 }
 div.descrCard{
@@ -188,10 +192,5 @@ div.imgCard{
 
 .tocart:hover{
 	transition-duration: 250ms;
-	padding: 6px 22px 6px 20px;
-	text-align: center;
 	background: #C7F9CC ;
-	border-radius: 8px;
-	text-decoration:none;
-	color:#0D1E29;
 }

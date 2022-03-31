@@ -2,17 +2,17 @@
     <fieldset>
         <legend style="text-align:center">IDENTIFIANTS DE CONNEXION</legend>
         <div>
-            <label for="nom">NOM</label>
+            <label for="mail">MAIL</label>
         </div>
         <div>
-            <input style="width:100%;" class="casesinput" type="text" name="nom" id="nom" value="<?php  if(isset($_COOKIE['nom'])){ echo $_COOKIE['nom'];}?>" required/>
+            <input style="width:100%;" class="casesinput" type="mail" name="mail" id="mail" value="<?php  if(isset($_COOKIE['mail'])){ echo $_COOKIE['mail'];}?>" required/>
         </div>
         <br>
         <div>
-            <label for="mdp">MOT DE PASSE</label>
+            <label for="password">MOT DE PASSE</label>
         </div>
         <div>
-            <input style="width:100%" class="casesinput" type="password" name="mdp" id="mdp" required/>
+            <input style="width:100%" class="casesinput" type="password" name="password" id="password" required/>
         </div>
     </fieldset>
     <div>

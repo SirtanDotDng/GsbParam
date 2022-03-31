@@ -3,7 +3,7 @@
 foreach( $lesCategories as $uneCategorie) 
 {
 	$idCategorie = $uneCategorie['id'];
-	$libCategorie = $uneCategorie['libelle'];
+	$libCategorie = $uneCategorie['nom'];
 	?>
 	<li>
 		<a href="index.php?uc=voirProduits&categorie=<?php echo $idCategorie ?>&action=voirProduits">

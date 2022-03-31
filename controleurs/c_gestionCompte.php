@@ -9,7 +9,7 @@ switch($action)
 	}
 	case 'checkConnexion' :
 	{
-		seConnecter($_POST["nom"], $_POST["mdp"]);
+		seConnecter($_POST["mail"], $_POST["password"]);
 	}
 	case 'nosProduits' :
 	{

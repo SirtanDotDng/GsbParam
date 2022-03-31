@@ -3,9 +3,11 @@
 #------------------------------------------------------------
 
 CREATE TABLE Produit(
-        ID    Int  Auto_increment  NOT NULL ,
-        Nom   Varchar (128) NOT NULL ,
-        Image Varchar (128) NOT NULL
+        ID          Int  Auto_increment  NOT NULL ,
+        Nom         Varchar (128) NOT NULL ,
+        Image       Varchar (128) NOT NULL ,
+        Description Varchar (512) NOT NULL ,
+        Quantite    Int NOT NULL
 	,CONSTRAINT Produit_PK PRIMARY KEY (ID)
 )ENGINE=InnoDB;
 
@@ -53,10 +55,12 @@ CREATE TABLE Client(
         ID          Int  Auto_increment  NOT NULL ,
         Nom         Varchar (128) NOT NULL ,
         Prenom      Varchar (128) NOT NULL ,
-        Telephone   Varchar (128) NOT NULL ,
-        Code_Postal Varchar (128) NOT NULL ,
+        Telephone   Varchar (32) NOT NULL ,
+        Code_Postal Varchar (5) NOT NULL ,
         Ville       Varchar (128) NOT NULL ,
-        Adresse     Varchar (128) NOT NULL
+        Adresse     Varchar (128) NOT NULL ,
+        Mail        Varchar (128) NOT NULL ,
+        Password    Varchar (512) NOT NULL
 	,CONSTRAINT Client_PK PRIMARY KEY (ID)
 )ENGINE=InnoDB;
 
@@ -108,10 +112,15 @@ CREATE TABLE Roles(
 #------------------------------------------------------------
 
 CREATE TABLE Salarie(
-        ID       Int  Auto_increment  NOT NULL ,
-        Nom      Varchar (128) NOT NULL ,
-        Prenom   Varchar (128) NOT NULL ,
-        Password Varchar (512) NOT NULL
+        ID          Int  Auto_increment  NOT NULL ,
+        Nom         Varchar (128) NOT NULL ,
+        Prenom      Varchar (128) NOT NULL ,
+        Telephone   Varchar (32) NOT NULL ,
+        Code_Postal Varchar (5) NOT NULL ,
+        Ville       Varchar (128) NOT NULL ,
+        Adresse     Varchar (128) NOT NULL ,
+        Mail        Varchar (128) NOT NULL ,
+        Password    Varchar (512) NOT NULL
 	,CONSTRAINT Salarie_PK PRIMARY KEY (ID)
 )ENGINE=InnoDB;
 
@@ -184,3 +193,4 @@ CREATE TABLE Habiliter(
 	,CONSTRAINT Habiliter_Salarie_FK FOREIGN KEY (ID) REFERENCES Salarie(ID)
 	,CONSTRAINT Habiliter_Roles0_FK FOREIGN KEY (ID_Roles) REFERENCES Roles(ID)
 )ENGINE=InnoDB;
+

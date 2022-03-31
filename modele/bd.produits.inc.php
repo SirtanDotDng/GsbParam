@@ -21,7 +21,7 @@ include_once 'bd.inc.php';
 		try 
 		{
         $monPdo = connexionPDO();
-		$req = 'select id, libelle from categorie';
+		$req = 'select id, nom from categorie';
 		$res = $monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
@@ -43,7 +43,7 @@ include_once 'bd.inc.php';
 		try 
 		{
         $monPdo = connexionPDO();
-		$req = 'SELECT id, libelle FROM categorie WHERE id="'.$idCategorie.'"';
+		$req = 'SELECT id, nom FROM categorie WHERE id="'.$idCategorie.'"';
 		$res = $monPdo->query($req);
 		$laLigne = $res->fetch();
 		return $laLigne;
@@ -67,7 +67,7 @@ include_once 'bd.inc.php';
 		try 
 		{
         $monPdo = connexionPDO();
-	    $req='select id, description, prix, image, idCategorie from produit where idCategorie ="'.$idCategorie.'"';
+	    $req='select id, nom, prix, image, id_Categorie from produit where id_Categorie ="'.$idCategorie.'"';
 		$res = $monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes; 
@@ -95,7 +95,7 @@ include_once 'bd.inc.php';
 		{
 			foreach($desIdProduit as $unIdProduit)
 			{
-				$req = 'select id, description, prix, image, idCategorie from produit where id = "'.$unIdProduit.'"';
+				$req = 'select id, nom, prix, image, id_Categorie from produit where id = "'.$unIdProduit.'"';
 				$res = $monPdo->query($req);
 				$unProduit = $res->fetch();
 				$lesProduits[] = $unProduit;
@@ -184,7 +184,7 @@ include_once 'bd.inc.php';
 		try 
 		{
         $monPdo = connexionPDO();
-		$req = 'select id, description, prix, image from produit';
+		$req = 'select id, nom, prix, image from produit';
 		$res = $monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
@@ -196,16 +196,19 @@ include_once 'bd.inc.php';
 		}
 	}
 
-	function seConnecter($unNom, $unPass){
+	function seConnecter($unMail, $unPass){
 		try
 		{
 			$monPdo = connexionPDO();
-			$req = $monPdo -> prepare('SELECT id FROM administrateur WHERE nom = ? AND mdp = ?');
-			$req -> execute($unNom, $unPass);
+			$req = $monPdo -> prepare('SELECT ID, ID_Roles AS role FROM utilisateur WHERE Mail = ? AND Password = ?');
+			$req -> execute($unMail, $unPass);
 			$res = $monPdo->query($req);
 			$lesLignes = $res->fetchAll();
-			if ($lesLignes)
+			if ($lesLignes){
 				session_start();
+				$_SESSION['id'] = $lesLignes['ID'];
+				$_SESSION['role'] = $lesLignes['ID_Roles'];
+			}
 		}
 		catch (PDOException $e){
 			print "Erreur !: " . $e->getMessage();

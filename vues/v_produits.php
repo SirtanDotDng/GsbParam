@@ -5,14 +5,14 @@
 foreach( $lesProduits as $unProduit) 
 { 	// récupération des informations du produit
 	$id = $unProduit['id'];
-	$description = $unProduit['description'];
+	$nom = $unProduit['nom'];
 	$prix=$unProduit['prix'];
 	$image = $unProduit['image'];
 	// affichage d'un produit avec ses informations
 	?>	
 	<div onClick="window.location = 'index.php?uc=voirProduits&produit=<?php echo $id ?>&action=voirDetailsProduit" class="card">
 			<div class="photoCard"><img src="<?php echo $image ?>" alt=image /></div>
-			<div class="descrCard"><?php echo $description ?></div>
+			<div class="descrCard"><?php echo $nom ?></div>
 			<div class="prixCard"><?php echo $prix."€" ?></div>
 			<div class="imgCard"><a class="tocart" href="index.php?uc=voirProduits&produit=<?php echo $id ?>&action=ajouterAuPanier">Ajouter au panier</a></div>
 	</div>

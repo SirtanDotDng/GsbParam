@@ -18,7 +18,7 @@
 function connexionPDO() {
     $login = 'param';
     $mdp = 'gsbparam';
-    $bd = 'GsbParam';
+    $bd = 'paramedical';
     $serveur = 'localhost';
 
     try {

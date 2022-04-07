@@ -190,7 +190,21 @@ div.imgCard{
 	color:#0D1E29;
 }
 
+.toProduct{
+	padding: 6px 59px 6px 57px;
+	text-align: center;
+	background: #80ED99 ;
+	border-radius: 8px;
+	text-decoration:none;
+	color:#0D1E29;
+}
+
 .tocart:hover{
+	transition-duration: 250ms;
+	background: #C7F9CC ;
+}
+
+.toProduct:hover{
 	transition-duration: 250ms;
 	background: #C7F9CC ;
 }

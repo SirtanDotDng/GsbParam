@@ -243,4 +243,14 @@ include_once 'bd.inc.php';
 		session_destroy();
 		echo "<script>location.href='index.php?uc=accueil';</script>";
 	}
+	
+	function getCompte($id){
+			$monPdo = connexionPDO();
+			$req = "SELECT Nom, Prenom, Telephone, Code_Postal, Ville, Adresse, Mail FROM utilisateur WHERE ID = ?";
+			$query = $monPdo -> prepare($req);
+			$query -> execute(array($id));
+			$res = $query -> fetch();
+			
+			return $res;
+	}
 ?>

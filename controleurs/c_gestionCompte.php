@@ -7,18 +7,18 @@ switch($action)
 		include("vues/v_connexion.php");
   		break;
 	}
-	case 'checkConnexion' :
+	case 'checkConnexion':
 	{
 		echo(login($_POST["mail"], $_POST["password"]));
 		break;
 	}
-	case 'nosProduits' :
+	case 'nosProduits':
 	{
 		$lesProduits = getLesProduits();
 		include("vues/v_produits.php");
 		break;
 	}
-	case 'ajouterAuPanier' :
+	case 'ajouterAuPanier':
 	{
 		$idProduit = $_REQUEST['produit'];
 		
@@ -38,5 +38,12 @@ switch($action)
 		}
 		break;
 	}
+
+	case 'voirCompte':
+		{
+			$lesLignes = getCompte($_SESSION["id"]);
+			include("vues/v_voirCompte.php");
+			break;
+		}
 }
 ?>

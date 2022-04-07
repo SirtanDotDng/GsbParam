@@ -9,7 +9,8 @@ switch($action)
 	}
 	case 'checkConnexion' :
 	{
-		seConnecter($_POST["mail"], $_POST["password"]);
+		echo(login($_POST["mail"], $_POST["password"]));
+		break;
 	}
 	case 'nosProduits' :
 	{
@@ -19,7 +20,7 @@ switch($action)
 	}
 	case 'ajouterAuPanier' :
 	{
-		$idProduit=$_REQUEST['produit'];
+		$idProduit = $_REQUEST['produit'];
 		
 		$ok = ajouterAuPanier($idProduit);
 		if(!$ok)
@@ -28,7 +29,6 @@ switch($action)
 			include("vues/v_message.php");
 		}
 		else{
-		// on recharge la même page ( NosProduits si pas categorie passée dans l'url')
 		if (isset($_REQUEST['categorie'])){
 			$categorie = $_REQUEST['categorie'];
 			header('Location:index.php?uc=voirProduits&action=voirProduits&categorie='.$categorie);

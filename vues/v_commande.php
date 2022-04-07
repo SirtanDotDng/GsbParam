@@ -7,19 +7,19 @@
 			<input id="nom" type="text" name="nom" value="<?php echo $nom ?>" size="30" maxlength="45">
 		</p>
 		<p>
-			<label for="rue">rue*</label>
+			<label for="rue">Rue*</label>
 			 <input id="rue" type="text" name="rue" value="<?php echo $rue ?>" size="30" maxlength="45">
 		</p>
 		<p>
-         <label for="cp">code postal* </label>
+         <label for="cp">Code postal* </label>
          <input id="cp" type="text" name="cp" value="<?php echo $cp ?>" size="10" maxlength="10">
       </p>
       <p>
-         <label for="ville">ville* </label>
+         <label for="ville">Ville* </label>
          <input id="ville" type="text" name="ville"  value="<?php echo $ville ?>" size="5" maxlength="5">
       </p>
       <p>
-         <label for="mail">mail* </label>
+         <label for="mail">Mail* </label>
          <input id="mail" type="text"  name="mail" value="<?php echo $mail ?>" size ="25" maxlength="25">
       </p> 
 	  	<p>

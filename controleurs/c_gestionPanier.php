@@ -27,7 +27,7 @@ switch($action)
 		include("vues/v_panier.php");
 		break;
 	}
-	case 'passerCommande' :
+	case 'passerCommande':
 	    $n= nbProduitsDuPanier();
 		if($n>0)
 		{   // les variables suivantes servent à l'affectation des attributs value du formulaire
@@ -37,11 +37,11 @@ switch($action)
 		}
 		else
 		{
-			$message = "panier vide !!";
+			$message = "Panier vide !";
 			include ("vues/v_message.php");
 		}
 		break;
-	case 'confirmerCommande'	:
+	case 'confirmerCommande':
 	{
 		$nom =$_REQUEST['nom'];$rue=$_REQUEST['rue'];$ville =$_REQUEST['ville'];$cp=$_REQUEST['cp'];$mail=$_REQUEST['mail'];
 	 	$msgErreurs = getErreursSaisieCommande($nom,$rue,$ville,$cp,$mail);
@@ -61,8 +61,4 @@ switch($action)
 		break;
 	}
 }
-
-
 ?>
-
-

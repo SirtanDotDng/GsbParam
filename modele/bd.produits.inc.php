@@ -196,23 +196,51 @@ include_once 'bd.inc.php';
 		}
 	}
 
-	function seConnecter($unMail, $unPass){
+	function login($unMail, $unPass){
 		try
 		{
 			$monPdo = connexionPDO();
-			$req = $monPdo -> prepare('SELECT ID, ID_Roles AS role FROM utilisateur WHERE Mail = ? AND Password = ?');
-			$req -> execute($unMail, $unPass);
-			$res = $monPdo->query($req);
-			$lesLignes = $res->fetchAll();
-			if ($lesLignes){
-				session_start();
-				$_SESSION['id'] = $lesLignes['ID'];
-				$_SESSION['role'] = $lesLignes['ID_Roles'];
+			$req = "SELECT ID, ID_Roles FROM utilisateur WHERE Mail = ? AND Password = ?";
+			$query = $monPdo -> prepare($req);
+			$query -> execute(array($unMail, $unPass));
+			$res = $query -> fetch();
+
+			if($res){
+				$_SESSION['id'] = $res['ID'];
+				$_SESSION['role'] = $res['ID_Roles'];
+				print_r($_SESSION['role']);
+				var_dump($_SESSION);
+			}else{
+
 			}
 		}
 		catch (PDOException $e){
 			print "Erreur !: " . $e->getMessage();
 			die();
 		}
+	}
+
+	function isLogged() {
+
+		$connected = false;
+		if(isset($_SESSION['id'])){
+			$connected = true;
+		}
+		return $connected;
+	}
+
+	function isAdmin() {
+
+		$admin = false;
+		if($_SESSION['role'] == 1){
+			$admin = true;
+		}
+		return $admin;
+	}
+	
+	function deconnexion() {
+		session_unset();
+		session_destroy();
+		echo "<script>location.href='index.php?uc=accueil';</script>";
 	}
 ?>

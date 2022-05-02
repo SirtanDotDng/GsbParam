@@ -3,7 +3,7 @@ session_start();
 include("vues/v_entete.html") ;
 require_once("modele/fonctions.inc.php");
 require_once("modele/bd.produits.inc.php");
-
+echo "<body>";
 if(isLogged() && isAdmin()){
 	include("vues/v_bandeauAdmin.html");
 }
@@ -15,14 +15,15 @@ else{
 		include("vues/v_bandeau.html");	
 	}
 }
-
+?>
+<?php
 if(isset($_REQUEST['uc'])) {   
 	$uc = $_REQUEST['uc'];
 }
 else {
 	$uc = 'accueil';
 }
-
+echo "<main>";
 switch($uc)
 {
 	case 'accueil': {
@@ -46,5 +47,7 @@ switch($uc)
 		break;  
 	}
 }
+echo "</main>";
 include("vues/v_pied.html") ;
+echo "</body>";
 ?>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&display=swap');
 
 html {
-font:normal 100%/1.2em 'Poppins',sans-serif;
+font:normal 125%/1.2em 'Poppins',sans-serif;
 }
 
 #logo {
@@ -10,16 +10,18 @@ font:normal 100%/1.2em 'Poppins',sans-serif;
 }
 
 body{
-	margin: 0%;
-	padding : 0% 5%;
-	background-color: #c7f9cc80;
+	background-color: #dbffdea4;
 }
+
+main{
+	padding: 3% 10% 3% 10%;
+}
+
 #accueil{
 	text-align: center;
 	padding-top: 8%;
 	color: #0D1E29 ;
 }
-
 
 fieldset {
  		display:block;
@@ -74,10 +76,9 @@ justify-content: space-around;
 
 #menu{
 display: flex;
-justify-content: space-around;
-height: 1.8em ;
-padding: 0%;
-margin-top: 2%;
+justify-content: space-evenly;
+height: 3em;
+margin-top: 1%;
 }
 
 #categories{
@@ -92,22 +93,27 @@ padding:0px 150px;
 
 }
 
-#menu li {
-	list-style-type: none;
-	list-style-image:none;
-	float : left;
-	text-align: center;
-	width: 100%;
-	height: 100%;
-	margin: 4px;
-	color: #fff ; 
+.nav {
 	background: #80ED99 ;
-	border-radius: 8px;
+	margin-top: -1%;
+	text-transform: uppercase;
+	box-shadow: 2px 2px 24px #0d1e2960;
 }
 
-#menu li a , #categories li a {
+#menu {
+	padding: 10px;
+}
+
+#menu a {
 		text-decoration:none;
 		color:#0D1E29;
+		font-size: 150%;
+		width: 320px;
+}
+
+#categories li a {
+	text-decoration:none;
+	color:#0D1E29;
 }
 
 #categories li {
@@ -120,6 +126,7 @@ padding:0px 150px;
 	margin: 2px ; 
 	padding: 5px;
 	border-radius: 8px;
+	color:#0D1E29;
 }
 
 
@@ -152,14 +159,14 @@ div.card{
     float:left;
     padding:10px;
     margin : 10px;
-    box-shadow: 2px 2px 24px #0d1e2960;
+    box-shadow: 2px 2px 24px #0d291960;
 	border-radius: 12px;
 	background-color: white;
+	transition-duration: 250ms;
 }
 
 div.card:hover{
-	transition-duration: 250ms;
-	box-shadow: 4px 4px 24px #00000080;
+	box-shadow: 4px 4px 24px #04401880;
 }
 
 div.photoCard>img{
@@ -183,12 +190,13 @@ div.imgCard{
 }
 
 .tocart{
-	padding: 6px 22px 6px 20px;
+	padding: 6px 20px 6px 20px;
 	text-align: center;
 	background: #80ED99 ;
 	border-radius: 8px;
 	text-decoration:none;
 	color:#0D1E29;
+	transition-duration: 250ms;
 }
 
 .toProduct{
@@ -198,14 +206,13 @@ div.imgCard{
 	border-radius: 8px;
 	text-decoration:none;
 	color:#0D1E29;
+	transition-duration: 250ms;
 }
 
 .tocart:hover{
-	transition-duration: 250ms;
 	background: #C7F9CC ;
 }
 
 .toProduct:hover{
-	transition-duration: 250ms;
 	background: #C7F9CC ;
 }

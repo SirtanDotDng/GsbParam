@@ -157,21 +157,13 @@ include_once 'bd.inc.php';
 	 * @param int $an une année
 	 * @return array $lesCommandes un tableau associatif contenant les infos des commandes du mois passé en paramètre
 	*/
-	function getLesCommandesDuMois($mois, $an)
-	{
-		try 
-		{
+	function getLesCommandesDuMois($mois, $an){
+
         $monPdo = connexionPDO();
 		$req = 'select id, dateCommande, nomPrenomClient, adresseRueClient, cpClient, villeClient, mailClient from commande where YEAR(dateCommande)= '.$an.' AND MONTH(dateCommande)='.$mois;
 		$res = $monPdo->query($req);
 		$lesCommandes = $res->fetchAll();
 		return $lesCommandes;
-		}
-		catch (PDOException $e) 
-		{
-        print "Erreur !: " . $e->getMessage();
-        die();
-		}
 	}
 
 		/**
@@ -179,44 +171,28 @@ include_once 'bd.inc.php';
 	 *
 	 * @return array $lesLignes le tableau associatif des catégories 
 	*/
-	function getLesProduits()
-	{
-		try 
-		{
+	function getLesProduits(){
+
         $monPdo = connexionPDO();
 		$req = 'select id, nom, prix, image from produit';
 		$res = $monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
-		} 
-		catch (PDOException $e) 
-		{
-        print "Erreur !: " . $e->getMessage();
-        die();
-		}
-	}
+	} 
 
 	function login($unMail, $unPass){
-		try
-		{
-			$monPdo = connexionPDO();
-			$req = "SELECT ID, ID_Roles FROM utilisateur WHERE Mail = ? AND Password = ?";
-			$query = $monPdo -> prepare($req);
-			$query -> execute(array($unMail, $unPass));
-			$res = $query -> fetch();
 
-			if($res){
-				$_SESSION['id'] = $res['ID'];
-				$_SESSION['role'] = $res['ID_Roles'];
-				print_r($_SESSION['role']);
-				var_dump($_SESSION);
-			}else{
+		$monPdo = connexionPDO();
+		$req = "SELECT ID, ID_Roles FROM utilisateur WHERE Mail = ? AND Password = ?";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($unMail, $unPass));
+		$res = $query -> fetch();
 
-			}
-		}
-		catch (PDOException $e){
-			print "Erreur !: " . $e->getMessage();
-			die();
+		if($res){
+			$_SESSION['id'] = $res['ID'];
+			$_SESSION['role'] = $res['ID_Roles'];
+			print_r($_SESSION['role']);
+			var_dump($_SESSION);
 		}
 	}
 

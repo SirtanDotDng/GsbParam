@@ -19,6 +19,13 @@ switch($action)
 		include("vues/v_produitsDeCategorie.php");
 		break;
 	}
+	case 'voirProduit' :
+		{
+			$id = $_GET['produit'];
+			$leProduit = getLeProduit($id);
+			include("vues/v_produit.php");
+			break;
+		}
 	case 'nosProduits' :
 	{
 		$lesProduits = getLesProduits();

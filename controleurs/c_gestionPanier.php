@@ -13,7 +13,7 @@ switch($action)
 		}
 		else
 		{
-			$message = "panier vide !!";
+			$message = "Votre panier ne contient pas de produits";
 			include ("vues/v_message.php");
 		}
 		break;
@@ -37,7 +37,7 @@ switch($action)
 		}
 		else
 		{
-			$message = "Panier vide !";
+			$message = "Votre panier ne contient pas de produits";
 			include ("vues/v_message.php");
 		}
 		break;

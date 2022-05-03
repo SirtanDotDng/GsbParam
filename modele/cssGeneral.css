@@ -5,12 +5,12 @@ html {
 }
 
 #logo {
-	filter: hue-rotate(-75deg) brightness(110%);
-	width:150px;
+	filter: hue-rotate(-55deg) brightness(125%) saturate(70%);
+	width:125px;
 }
 
 body{
-	background-color: #dbffdea4;
+	background-color: #DEF6EB;
 }
 
 main{
@@ -63,10 +63,11 @@ input[type="submit"]
    border-radius: 8px;
 }
 .message{ 
-   background-color:#38A3A5;
+   background-color:#ed9480;
    color: black;
    font-size:1.1em;
    border-radius: 8px;
+   padding: 1px;
 }
 
 #bandeau {
@@ -77,8 +78,6 @@ input[type="submit"]
 #menu{
 	display: flex;
 	justify-content: space-evenly;
-	height: 3em;
-	margin-top: 1%;
 }
 
 #categories{
@@ -96,9 +95,11 @@ input[type="submit"]
 }
 
 .nav {
-	background: #80ED99 ;
-	margin-top: -2%;
-	box-shadow: 2px 2px 24px #0d1e2960;
+	background: #91e1ba ;
+	margin-top: -3%;
+	margin-left: -0.5%;
+	margin-right: -0.5%;
+	box-shadow: 0 0 24px #326A4F80;
 }
 
 #menu {
@@ -108,7 +109,15 @@ input[type="submit"]
 #menu a {
 	text-decoration:none;
 	color:#0D1E29;
-	font-size: 150%;
+	font-size: 130%;
+	width: 320px;
+	transition-duration: 250ms;
+}
+
+#menu a:hover {
+	text-decoration:none;
+	color:#DEF6EB;
+	font-size: 130%;
 	width: 320px;
 }
 
@@ -123,7 +132,7 @@ input[type="submit"]
     margin-right: 1px ;
     width:100px;
     text-align:center;
-	background:#80ED99;
+	background:#91e1ba;
 	margin: 2px ; 
 	padding: 5px;
 	border-radius: 8px;
@@ -142,7 +151,7 @@ input[type="submit"]
 }
 
 .cart {
-	background-color: #80ED99;
+	background-color: #91e1ba;
 	padding: 0px 32px 0px 32px;
 	border-radius: 8px;
 	text-decoration:none;
@@ -150,22 +159,25 @@ input[type="submit"]
 	transition-duration: 250ms;
 }
 
+.cart:hover {
+	background: #C7F9CC ;
+}
+
 div.card{
-	border-top: #80ED99 8px solid;
     position : relative;
     width:180px;
     height : 350px;
     float:left;
     padding:10px;
     margin : 10px;
-    box-shadow: 2px 2px 24px #0d291960;
-	border-radius: 0 0 12px 12px;
+    box-shadow: 2px 2px 24px #326A4F80;
+	border-radius: 12px;
 	background-color: white;
 	transition-duration: 250ms;
 }
 
 div.card:hover{
-	box-shadow: 4px 4px 24px #04401880;
+	box-shadow: 6px 6px 32px #326A4F99;
 }
 
 div.photoCard>img{
@@ -188,7 +200,7 @@ div.imgCard{
     position:absolute;
     bottom:10px;
 	width: 180px;
-	background: #80ED99 ;
+	background: #91e1ba ;
 	border-radius: 8px;
 	transition-duration: 250ms;
 }
@@ -204,7 +216,7 @@ div.imgCard{
 .toProduct{
 	padding: 6px 59px 6px 57px;
 	text-align: center;
-	background: #80ED99 ;
+	background: #91e1ba ;
 	border-radius: 8px;
 	text-decoration:none;
 	color:#0D1E29;
@@ -217,4 +229,17 @@ div.imgCard:hover{
 
 .toProduct:hover{
 	background: #C7F9CC ;
+}
+
+.disconnect {
+	background-color: #ed9480;
+	padding: 0px 32px 0px 32px;
+	border-radius: 8px;
+	text-decoration:none;
+	color:#0D1E29;
+	transition-duration: 250ms;
+}
+
+.disconnect:hover{
+	background-color: #f9d3c7;
 }

@@ -52,5 +52,10 @@ switch($action)
 			include("vues/v_voirCompte.php");
 			break;
 		}
+	case 'deconnexion':
+		{
+			deconnexion();
+			header('Location:index.php');
+		}
 }
 ?>

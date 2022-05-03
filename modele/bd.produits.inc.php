@@ -180,6 +180,16 @@ include_once 'bd.inc.php';
 		return $lesLignes;
 	} 
 
+	function getLeProduit($id){
+		$monPdo = connexionPDO();
+		$req = "SELECT * FROM produit WHERE id = ?";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($id));
+		$res = $query -> fetchAll();
+		
+		return $res;
+	}
+
 	function login($unMail, $unPass){
 
 		$monPdo = connexionPDO();

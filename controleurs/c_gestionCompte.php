@@ -42,6 +42,13 @@ switch($action)
 	case 'voirCompte':
 		{
 			$lesLignes = getCompte($_SESSION["id"]);
+			$nom = $lesLignes['Nom'];
+			$prenom = $lesLignes['Prenom'];
+			$telephone = $lesLignes['Telephone'];
+			$cp = $lesLignes['Code_Postal'];
+			$ville = $lesLignes['Ville'];
+			$adresse = $lesLignes['Adresse'];
+			$mail = $lesLignes['Mail'];
 			include("vues/v_voirCompte.php");
 			break;
 		}

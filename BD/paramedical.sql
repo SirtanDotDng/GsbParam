@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 07 avr. 2022 à 06:52
+-- Généré le :  mer. 04 mai 2022 à 15:23
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -100,14 +100,29 @@ CREATE TABLE IF NOT EXISTS `marque` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(128) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `marque`
 --
 
 INSERT INTO `marque` (`ID`, `Nom`) VALUES
-(1, 'GSB');
+(1, 'GSB'),
+(2, 'Laino'),
+(3, 'Klorane'),
+(4, 'Weleda'),
+(5, 'Phytopulp'),
+(6, 'Nuxe'),
+(7, 'La Roche Posay'),
+(8, 'Futuro'),
+(9, 'Microlife'),
+(10, 'Melapi'),
+(11, 'Meli'),
+(12, 'Avène'),
+(13, 'Mustela'),
+(14, 'Isdin'),
+(15, 'Uriage'),
+(16, 'Bioderma');
 
 -- --------------------------------------------------------
 
@@ -124,7 +139,15 @@ CREATE TABLE IF NOT EXISTS `note` (
   PRIMARY KEY (`ID`),
   KEY `Note_Produit_FK` (`ID_Produit`),
   KEY `Note_Utilisateur0_FK` (`ID_Utilisateur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `note`
+--
+
+INSERT INTO `note` (`ID`, `Note`, `ID_Produit`, `ID_Utilisateur`) VALUES
+(1, 4, 1, 1),
+(2, 5, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -226,17 +249,18 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `Adresse` varchar(128) COLLATE utf8_bin NOT NULL,
   `Mail` varchar(128) COLLATE utf8_bin NOT NULL,
   `Password` varchar(512) COLLATE utf8_bin NOT NULL,
-  `ID_Roles` int(11) NOT NULL,
+  `ID_Roles` int(11) NOT NULL DEFAULT 2,
   PRIMARY KEY (`ID`),
   KEY `Utilisateur_Roles_FK` (`ID_Roles`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`ID`, `Nom`, `Prenom`, `Telephone`, `Code_Postal`, `Ville`, `Adresse`, `Mail`, `Password`, `ID_Roles`) VALUES
-(1, 'Le Roy', 'Mathieu', '00000000', '00000', 'Orléans', '10 Rue des Olives', 'mathieu@mail.com', 'mathieu', 1);
+(1, 'Le Roy', 'Mathieu', '00000000', '00000', 'Orléans', '10 Rue des Olives', 'mathieu@mail.com', '$2y$10$2xto2wg/SfxxdeJ2CewUNOQx.EYB5vJhSfChYeRNqNB5DdQCCZ4t6', 1),
+(2, 'Fouchard', 'Alexis', '0000000000', '45000', 'Orléans', 'Rue de la rue', 'alexilian.fouchard@gmail.com', '$2y$10$DgCMNJiU9DRI7pTmTBBc2OuzBCTDDQUNUvu06W.A7ljbD0ymhl3KK', 2);
 
 --
 -- Contraintes pour les tables déchargées

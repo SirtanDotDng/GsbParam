@@ -6,5 +6,5 @@
     <div> Ville |       <?php echo $ville; ?></div>
     <div> Code Postal | <?php echo $cp; ?></div>
 </div>
-<br>
+<div class="hline"></div>
 <a class="disconnect" href="index.php?uc=seConnecter&action=deconnexion">Déconnexion</a>

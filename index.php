@@ -5,14 +5,14 @@ require_once("modele/fonctions.inc.php");
 require_once("modele/bd.produits.inc.php");
 echo "<body>";
 if(isLogged() && isAdmin()){
-	include("vues/v_bandeauAdmin.html");
+	include("vues/v_bandeauAdmin.php");
 }
 else{
 	if(isLogged()){
-		include("vues/v_bandeauLogged.html");
+		include("vues/v_bandeauLogged.php");
 	}
 	else{
-		include("vues/v_bandeau.html");	
+		include("vues/v_bandeau.php");	
 	}
 }
 ?>

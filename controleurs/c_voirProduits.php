@@ -23,6 +23,8 @@ switch($action)
 		{
 			$id = $_GET['produit'];
 			$leProduit = getLeProduit($id);
+			$note['note'] = getNoteMoyenneProduit($id);
+			$note = (int) $note['note']['note'];
 			include("vues/v_produit.php");
 			break;
 		}

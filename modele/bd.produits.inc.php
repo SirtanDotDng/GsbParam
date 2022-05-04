@@ -190,28 +190,46 @@ include_once 'bd.inc.php';
 		return $res;
 	}
 
-	function login($unMail, $unPass){
+	function getNoteMoyenneProduit($produit){
+		$monPdo = connexionPDO();
+		$req = "SELECT AVG(Note) AS note FROM note WHERE ID_Produit = ?";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($produit));
+		$res = $query -> fetch();
+
+		return $res;
+	}
+
+	function newpass($unMail, $unPass){
+
+		$password = password_hash($unPass, PASSWORD_DEFAULT);
 
 		$monPdo = connexionPDO();
-		$req = "SELECT Password FROM utilisateur WHERE Mail = ?";
+		$req = "UPDATE utilisateur SET Password = ? WHERE Mail = ?";
 		$query = $monPdo -> prepare($req);
-		$query -> execute(array($unMail));
-		$res = $query -> fetch();
-
-		if(password_verify($unPass, $res['Password'])){
-
-		$password = $res['Password'];
-
-		$req = "SELECT ID, ID_Roles FROM utilisateur WHERE Mail = ? AND Password = ?";
-		$query = $monPdo -> prepare($req);
-		$query -> execute(array($unMail, $password));
-		$res = $query -> fetch();
-
-		if($res){
-			$_SESSION['id'] = $res['ID'];
-			$_SESSION['role'] = $res['ID_Roles'];
-		}
+		$query -> execute(array($password, $unMail));	
 	}
+
+	function login($unMail, $unPass){
+
+			$monPdo = connexionPDO();
+			$req = "SELECT Password FROM utilisateur WHERE Mail = ?";
+			$query = $monPdo -> prepare($req);
+			$query -> execute(array($unMail));
+			$res = $query -> fetch();
+
+			if(password_verify($unPass, $res['Password'])){
+
+			$req = "SELECT ID, ID_Roles FROM utilisateur WHERE Mail = ?";
+			$query = $monPdo -> prepare($req);
+			$query -> execute(array($unMail));
+			$res = $query -> fetch();
+
+			if($res){
+				$_SESSION['id'] = $res['ID'];
+				$_SESSION['role'] = $res['ID_Roles'];
+			}
+		}
 	}
 
 	function register($nom, $prenom, $mail, $password1, $password2, $telephone, $adresse, $ville, $cp){

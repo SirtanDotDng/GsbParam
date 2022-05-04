@@ -24,6 +24,11 @@ switch($action)
 		include("vues/v_produits.php");
 		break;
 	}
+	case 'ajouterProduit' :
+		{
+			include("vues/v_newProduit.php");
+			break;
+		}
 	case 'ajouterAuPanier' :
 	{
 		$idProduit=$_REQUEST['produit'];

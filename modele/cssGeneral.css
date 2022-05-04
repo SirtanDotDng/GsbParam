@@ -19,14 +19,17 @@ main{
 }
 
 h1 {
-	margin-left: 10px;
 	color: #0D1E29 ;
 }
 
 #accueil{
+	background-color: #fff;
 	text-align: center;
-	padding-top: 8%;
-	color: #0D1E29 ;
+	padding: 8% 4% 8% 4%;
+	color: #0D1E29;
+	border-top: #91e1ba 8px solid;
+	border-radius: 0 0 8px 8px;
+	box-shadow: 0 0 32px #326A4F80;
 }
 
 fieldset {
@@ -53,8 +56,8 @@ input {
 	height: 24px;
 	font-size: 14px;
 	font-family:'Poppins',sans-serif;
-	border: none;
-	border-left: #91e1ba 4px solid;
+	border-radius: 16px;
+	border: #91e1ba 2px solid;
 	background-color: #DEF6EB;
 	transition-duration: 250ms;
 	padding-left: 6px;
@@ -62,19 +65,17 @@ input {
 
 input:hover, #ent input:focus {
 	width: 100%;
-	border: none;
-	border-left: #91e1ba 2px solid;
 	background-color: #DEF6EB;
 	transition-duration: 250ms;
 }
 
 select {
 	width: 100%;
-	height: 24px;
+	height: 30px;
 	font-size: 14px;
 	font-family:'Poppins',sans-serif;
-	border: none;
-	border-left: #91e1ba 4px solid;
+	border-radius: 16px;
+	border: #91e1ba 2px solid;
 	background-color: #DEF6EB;
 	transition-duration: 250ms;
 	padding-left: 6px;
@@ -201,7 +202,8 @@ div.card{
     padding:10px;
     margin : 10px;
     box-shadow: 2px 2px 24px #326A4F80;
-	border-radius: 12px;
+	border-top: #91e1ba 8px solid;
+	border-radius: 0 0 12px 12px;
 	background-color: white;
 	transition-duration: 250ms;
 }
@@ -256,11 +258,11 @@ div.imgCard{
 }
 
 div.imgCard:hover{
-	background: #C7F9CC ;
+	background: #DEF6EB ;
 }
 
 .toProduct:hover{
-	background: #C7F9CC ;
+	background: #DEF6EB ;
 }
 
 .disconnect {
@@ -290,13 +292,13 @@ div.imgCard:hover{
 	padding: 0px 32px 0px 32px;
 	text-align: center;
 	background: #DEF6EB ;
-	border: none;
-	border-left: 4px #91e1ba solid;
+	border: #91e1ba 2px solid;
+	border-radius: 16px;
 	text-decoration:none;
 	color:#0D1E29;
 	transition-duration: 250ms;
 	font-size: 100%;
-	height: 26px;
+	height: 30px;
 }
 
 .button:hover{
@@ -316,4 +318,16 @@ div.imgCard:hover{
 
 .product h1 {
 	font-size: 120%;
+}
+
+.hline {
+	height: 0px;
+	border-top:#0D1E29 1px solid;
+	margin: 3% 0 3% 0;
+}
+
+e {
+	background-color: #ed9480;
+	padding: 0 8px 0 8px;
+	border-radius: 16px;
 }

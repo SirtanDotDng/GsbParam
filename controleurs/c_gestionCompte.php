@@ -15,12 +15,14 @@ switch($action)
 	case 'checkConnexion':
 	{
 		login($_POST["mail"], $_POST["password"]);
+		header('Location:index.php?uc=seConnecter&action=voirCompte');
 		break;
 	}
 
 	case 'checkRegister':
 		{
 			register($_POST["nom"], $_POST['prenom'], $_POST["email"], $_POST["password"], $_POST['password2'], $_POST['tel'], $_POST['adresse'], $_POST['ville'], $_POST['cp']);
+			header('Location:index.php?uc=seConnecter&action=voirCompte');
 			break;
 		}
 	case 'nosProduits':

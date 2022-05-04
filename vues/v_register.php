@@ -46,7 +46,8 @@
         </div>        
     </fieldset>
 </form>
-
+<div style="text-align:center">
 <p>Vous possédez déjà un compte ?</p>
 <a class="button" href="index.php?uc=seConnecter&action=formConnexion">Se connecter</a>
+</div>
 </div>

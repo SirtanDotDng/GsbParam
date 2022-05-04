@@ -44,7 +44,6 @@ function supprimerPanier()
 */
 function ajouterAuPanier($idProduit)
 {
-	
 	$ok = true;
 	if(in_array($idProduit,$_SESSION['produits']))
 	{
@@ -76,6 +75,7 @@ function getLesIdProduitsDuPanier()
  
  * @return int $n
 */
+
 function nbProduitsDuPanier()
 {
 	$n = 0;

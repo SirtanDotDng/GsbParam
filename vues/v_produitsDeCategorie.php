@@ -1,5 +1,5 @@
-<h1> Produits de la catégorie 
 <?php	
+
 $action = $_REQUEST['categorie'];
 switch($action)
 {
@@ -21,7 +21,8 @@ switch($action)
 }
 ?>
 
-<?php echo $categorie ?> </h1>
+<h1> Produits de la catégorie <?php echo $categorie ?> </h1>
+
 <div id="produits">
 <?php
 // parcours du tableau contenant les produits à afficher

@@ -185,7 +185,7 @@ include_once 'bd.inc.php';
 		$req = "SELECT * FROM produit WHERE id = ?";
 		$query = $monPdo -> prepare($req);
 		$query -> execute(array($id));
-		$res = $query -> fetchAll();
+		$res = $query -> fetch();
 		
 		return $res;
 	}
@@ -193,16 +193,35 @@ include_once 'bd.inc.php';
 	function login($unMail, $unPass){
 
 		$monPdo = connexionPDO();
+		$req = "SELECT Password FROM utilisateur WHERE Mail = ?";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($unMail));
+		$res = $query -> fetch();
+
+		if(password_verify($unPass, $res['Password'])){
+
+		$password = $res['Password'];
+
 		$req = "SELECT ID, ID_Roles FROM utilisateur WHERE Mail = ? AND Password = ?";
 		$query = $monPdo -> prepare($req);
-		$query -> execute(array($unMail, $unPass));
+		$query -> execute(array($unMail, $password));
 		$res = $query -> fetch();
 
 		if($res){
 			$_SESSION['id'] = $res['ID'];
 			$_SESSION['role'] = $res['ID_Roles'];
-			print_r($_SESSION['role']);
-			var_dump($_SESSION);
+		}
+	}
+	}
+
+	function register($nom, $prenom, $mail, $password1, $password2, $telephone, $adresse, $ville, $cp){
+
+		if($password1 == $password2) {
+		$password = password_hash($password1, PASSWORD_DEFAULT);
+		$monPdo = connexionPDO();
+		$req = "INSERT INTO utilisateur (Nom, Prenom, Telephone, Code_Postal, Ville, Adresse, Mail, Password) VALUES (?,?,?,?,?,?,?,?)";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($nom, $prenom, $telephone, $cp, $ville, $adresse, $mail, $password));
 		}
 	}
 

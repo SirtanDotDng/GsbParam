@@ -1,4 +1,4 @@
-﻿<div id="creationCommande">
+﻿<div class="form">
 <form method="POST" action="index.php?uc=gererPanier&action=confirmerCommande">
    <fieldset>
      <legend>Commande</legend>
@@ -24,7 +24,6 @@
       </p> 
 	  	<p>
          <input type="submit" value="Valider" name="valider">
-         <input type="reset" value="Annuler" name="annuler"> 
       </p>
 	  </fieldset>
 </form>

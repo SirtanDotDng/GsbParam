@@ -7,11 +7,22 @@ switch($action)
 		include("vues/v_connexion.php");
   		break;
 	}
+	case 'formRegister':
+		{
+			include("vues/v_register.php");
+			  break;
+		}
 	case 'checkConnexion':
 	{
-		echo(login($_POST["mail"], $_POST["password"]));
+		login($_POST["mail"], $_POST["password"]);
 		break;
 	}
+
+	case 'checkRegister':
+		{
+			register($_POST["nom"], $_POST['prenom'], $_POST["email"], $_POST["password"], $_POST['password2'], $_POST['tel'], $_POST['adresse'], $_POST['ville'], $_POST['cp']);
+			break;
+		}
 	case 'nosProduits':
 	{
 		$lesProduits = getLesProduits();

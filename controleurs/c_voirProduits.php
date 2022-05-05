@@ -23,9 +23,25 @@ switch($action)
 		{
 			$id = $_GET['produit'];
 			$leProduit = getLeProduit($id);
-			$note['note'] = getNoteMoyenneProduit($id);
-			$note = (int) $note['note']['note'];
+			$note = getNoteMoyenneProduit($id);
+			$notei = (int) $note['note'];
+			$notef = floatval($note['note']);
+			$lesContenances = getContenanceProduit($id);
 			include("vues/v_produit.php");
+			break;
+		}
+	case 'ajouterAvis' :
+		{
+			$id = $_GET['produit'];
+			$lesAvis = ajouterAvisProduit($id, $_POST['avis'], $_POST['note'], $_SESSION['id']);
+			include("vues/v_ajoutAvis.php");
+			break;
+		}
+	case 'voirAvis' :
+		{
+			$id = $_GET['produit'];
+			$lesAvis = getAvisProduit($id);
+			include("vues/v_avis.php");
 			break;
 		}
 	case 'nosProduits' :
@@ -38,7 +54,7 @@ switch($action)
 	{
 		$idProduit=$_REQUEST['produit'];
 		
-		$ok = ajouterAuPanier($idProduit);
+		$ok = ajouterAuPanier($idProduit, $_POST['quantite'],$_POST['contenance']);
 		if(!$ok)
 		{
 			$message = "Cet article est déjà dans le panier !!";

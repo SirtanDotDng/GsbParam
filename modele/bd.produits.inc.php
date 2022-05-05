@@ -67,7 +67,7 @@ include_once 'bd.inc.php';
 		try 
 		{
         $monPdo = connexionPDO();
-	    $req='select id, nom, prix, image, id_Categorie from produit where id_Categorie ="'.$idCategorie.'"';
+	    $req='select id, nom, image, id_Categorie from produit where id_Categorie ="'.$idCategorie.'"';
 		$res = $monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes; 
@@ -95,7 +95,7 @@ include_once 'bd.inc.php';
 		{
 			foreach($desIdProduit as $unIdProduit)
 			{
-				$req = 'select id, nom, prix, image, id_Categorie from produit where id = "'.$unIdProduit.'"';
+				$req = 'select id, nom, image, id_Categorie from produit where id = "'.$unIdProduit.'"';
 				$res = $monPdo->query($req);
 				$unProduit = $res->fetch();
 				$lesProduits[] = $unProduit;
@@ -174,7 +174,7 @@ include_once 'bd.inc.php';
 	function getLesProduits(){
 
         $monPdo = connexionPDO();
-		$req = 'select id, nom, prix, image from produit';
+		$req = 'select id, nom, image from produit';
 		$res = $monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
@@ -200,6 +200,44 @@ include_once 'bd.inc.php';
 		return $res;
 	}
 
+	function getContenanceProduit($produit){
+		$monPdo = connexionPDO();
+		$req ="SELECT ID, Unite, Quantite, Prix FROM contenance WHERE ID_Produit = ?";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($produit));
+		$res = $query -> fetchAll();
+
+		return $res;
+	}
+
+	function getContenanceProduitPanier($idContenance){
+		$monPdo = connexionPDO();
+		$req ="SELECT Unite, Quantite, Prix FROM contenance WHERE ID = ?";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($idContenance));
+		$res = $query -> fetch();
+
+		return $res;
+	}
+
+	function ajouterAvisProduit($produit, $avis, $note, $user){
+		$monPdo = connexionPDO();
+		$req ="INSERT INTO note (Note, Avis, ID_Produit, ID_Utilisateur) VALUES (?,?,?,?)";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($note, $avis, $produit, $user));
+	}
+
+	function getAvisProduit($produit){
+		$monPdo = connexionPDO();
+		$req ="SELECT Note, Avis, utilisateur.Nom, utilisateur.Prenom FROM note INNER JOIN utilisateur ON ID_Utilisateur = utilisateur.ID WHERE ID_Produit = ?";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($produit));
+		$res = $query -> fetchAll();
+
+		return $res;
+	}
+
+
 	function newpass($unMail, $unPass){
 
 		$password = password_hash($unPass, PASSWORD_DEFAULT);
@@ -220,14 +258,14 @@ include_once 'bd.inc.php';
 
 			if(password_verify($unPass, $res['Password'])){
 
-			$req = "SELECT ID, ID_Roles FROM utilisateur WHERE Mail = ?";
+			$req = "SELECT ID, ID_Role FROM utilisateur WHERE Mail = ?";
 			$query = $monPdo -> prepare($req);
 			$query -> execute(array($unMail));
 			$res = $query -> fetch();
 
 			if($res){
 				$_SESSION['id'] = $res['ID'];
-				$_SESSION['role'] = $res['ID_Roles'];
+				$_SESSION['role'] = $res['ID_Role'];
 			}
 		}
 	}

@@ -29,7 +29,7 @@ h1 {
 	color: #0D1E29;
 	border-top: #91e1ba 8px solid;
 	border-radius: 0 0 8px 8px;
-	box-shadow: 0 0 32px #326A4F80;
+	box-shadow: 0 0 32px -8px #326A4F80;
 }
 
 fieldset {
@@ -115,6 +115,15 @@ select {
 	flex-direction: row;
 }
 
+.avis{
+	background-color: #DEF6EB;
+	border: #91e1ba 2px solid;
+	border-radius: 8px;
+	resize: none;
+	width: 99%;
+	margin-top: 1%;
+}
+
 #produits{
 	display: flex;
 	flex-wrap: wrap;
@@ -130,7 +139,7 @@ select {
 	margin-top: -2.3%;
 	margin-left: -0.55%;
 	margin-right: -0.55%;
-	box-shadow: 0 0 24px #326A4F80;
+	box-shadow: 0 0 32px -8px #326A4F80;
 }
 
 #menu {
@@ -150,6 +159,7 @@ select {
 	text-decoration:none;
 	color:#DEF6EB;
 	width: 320px;
+	text-shadow: #326A4F80 0 0 24px;
 }
 
 #categories li a {
@@ -161,13 +171,12 @@ select {
 	list-style-type: none;
 	list-style-image:none;
     margin-right: 1px ;
-    width:100px;
+    width:250px;
     text-align:center;
 	background:#91e1ba;
-	margin: 2px ; 
+	margin: 4px ; 
 	padding: 5px;
 	border-radius: 8px;
-	color:#0D1E29;
 }
 
 
@@ -191,25 +200,24 @@ select {
 }
 
 .cart:hover {
-	background: #C7F9CC ;
+	background: #DEF6EB ;
 }
 
 div.card{
     position : relative;
     width:180px;
-    height : 350px;
+    height : 320px;
     float:left;
     padding:10px;
     margin : 10px;
-    box-shadow: 2px 2px 24px #326A4F80;
-	border-top: #91e1ba 8px solid;
-	border-radius: 0 0 12px 12px;
+    box-shadow: 2px 2px 32px -8px #326A4F80;
+	border-radius: 12px;
 	background-color: white;
 	transition-duration: 250ms;
 }
 
 div.card:hover{
-	box-shadow: 6px 6px 32px #326A4F99;
+	box-shadow: 6px 6px 32px -8px #326A4F90;
 }
 
 div.photoCard>img{
@@ -285,14 +293,14 @@ div.imgCard:hover{
 	margin: 0 10% 0 10%;
 	border-radius: 0 0 8px 8px;
 	border-top: #91e1ba 8px solid;
-	box-shadow: 0 0 32px #326A4F80;
+	box-shadow: 0 0 32px -8px #326A4F80;
 }
 
 .button{
 	padding: 0px 32px 0px 32px;
 	text-align: center;
-	background: #DEF6EB ;
-	border: #91e1ba 2px solid;
+	background: #91e1ba ;
+	border: none;
 	border-radius: 16px;
 	text-decoration:none;
 	color:#0D1E29;
@@ -302,7 +310,7 @@ div.imgCard:hover{
 }
 
 .button:hover{
-	background: #91e1ba ;
+	background: #DEF6EB ;
 	cursor: pointer;
 }
 
@@ -310,10 +318,10 @@ div.imgCard:hover{
 	width: 50%;
 	background: white;
 	padding: 4% 15% 4% 15%;
-	margin: 0 10% 0 10%;
+	margin: -2% 10% 0 10%;
 	border-radius: 0 0 8px 8px;
 	border-top: #91e1ba 8px solid;
-	box-shadow: 0 0 32px #326A4F80;
+	box-shadow: 0 0 32px -8px #326A4F80;
 }
 
 .product h1 {
@@ -330,4 +338,32 @@ e {
 	background-color: #ed9480;
 	padding: 0 8px 0 8px;
 	border-radius: 16px;
+}
+
+.note {
+	text-decoration: none;
+	color :#0D1E29
+}
+
+.listAvis {
+	width: 84%;
+	background: white;
+	padding: 4% 8% 4% 8%;
+	border-radius: 0 0 8px 8px;
+	border-top: #91e1ba 8px solid;
+	box-shadow: 0 0 32px -8px #326A4F80;
+}
+
+.unAvis {
+	border-left: #91e1ba 4px solid;
+	padding-left: 3%;
+}
+
+.quantite {
+	background-color: #ed9480;
+	padding: 0 8px 0 8px;
+	border-radius: 16px;
+	width: auto;
+	text-align: center;
+	position: absolute;
 }

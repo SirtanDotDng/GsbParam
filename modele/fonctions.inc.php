@@ -42,7 +42,7 @@ function supprimerPanier()
  * @param string $idProduit identifiant de produit
  * @return boolean $ok vrai si le produit n'était pas dans la variable, faux sinon 
 */
-function ajouterAuPanier($idProduit)
+function ajouterAuPanier($idProduit, $quantite, $contenance)
 {
 	$ok = true;
 	if(in_array($idProduit,$_SESSION['produits']))
@@ -51,7 +51,10 @@ function ajouterAuPanier($idProduit)
 	}
 	else
 	{
-		$_SESSION['produits'][]= $idProduit; // l'indice n'est pas précisé : il sera automatiquement celui qui suit le dernier occupé
+		$_SESSION['produits'][]= $idProduit;
+		$_SESSION['quantite'][]= $quantite;
+		$_SESSION['contenance'][]= $contenance;
+		// l'indice n'est pas précisé : il sera automatiquement celui qui suit le dernier occupé
 	}
 	return $ok;
 }
@@ -98,6 +101,8 @@ function retirerDuPanier($idProduit)
 {
 		$index =array_search($idProduit,$_SESSION['produits']);
 		unset($_SESSION['produits'][$index]);
+		unset($_SESSION['quantite'][$index]);
+		unset($_SESSION['contenance'][$index]);
 }
 /**
  * teste si une chaîne a un format de code postal

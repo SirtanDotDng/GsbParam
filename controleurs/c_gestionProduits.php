@@ -26,6 +26,7 @@ switch($action)
 	}
 	case 'ajouterProduit' :
 		{
+			$lesCategories = getLesCategories();
 			include("vues/v_newProduit.php");
 			break;
 		}

@@ -7,6 +7,7 @@
     <aside>
         <a class="note" href="index.php?uc=voirProduits&produit=<?php echo $id;?>&action=voirAvis">Avis | <?php for($i = 0; $i < $notei; $i++){ echo '<i class="fa-solid fa-circle"></i>'; } if($notei != $notef){ echo '<i class="fa-solid fa-circle-half-stroke"></i>'; }?></a>
         <p><?php echo $leProduit['Description'] ?></p>
+        <?php if($leProduit['Quantite'] > 0){?>
         <p>Quantité restante : <?php echo $leProduit['Quantite'] ?></p>
         <form class="produit" method="post" action="index.php?uc=voirProduits&produit=<?php echo $id ?>&action=ajouterAuPanier">
             <fieldset>
@@ -29,9 +30,18 @@
                 </div>       
             </fieldset>
         </form>
+        <?php } else {
+            echo "<p style='color:#ed9480;'>Ce produit est actuellement en rupture de stock.</p>";
+        } ?>
     </aside>
 </section>
 <div class="hline"></div>
+    <?php foreach($lesAvis as $unAvis){ ?>
+    <div class="unAvis">
+        <h3><?php echo $unAvis['Nom']." ".$unAvis['Prenom']." | "; for($i = 0; $i < $unAvis['Note']; $i++){ echo '<i class="fa-solid fa-circle"></i>'; } ?></h3>
+        <p><?php echo $unAvis['Avis']; ?></p>
+    </div>
+<?php }?>
 Ajouter un avis
 <form method="post" action="index.php?uc=voirProduits&action=ajouterAvis&produit=<?php echo $id;?>">
     <input name="note" type="number" max="5" min="1">

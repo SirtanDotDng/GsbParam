@@ -45,12 +45,10 @@ function supprimerPanier()
 function ajouterAuPanier($idProduit, $quantite, $contenance)
 {
 	$ok = true;
-	if(in_array($idProduit,$_SESSION['produits']))
-	{
+	if(in_array($idProduit,$_SESSION['produits'])){
 		$ok = false;
 	}
-	else
-	{
+	else{
 		$_SESSION['produits'][]= $idProduit;
 		$_SESSION['quantite'][]= $quantite;
 		$_SESSION['contenance'][]= $contenance;

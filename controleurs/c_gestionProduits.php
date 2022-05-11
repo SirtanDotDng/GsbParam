@@ -27,14 +27,20 @@ switch($action)
 	case 'ajouterProduit' :
 		{
 			$lesCategories = getLesCategories();
+			$lesMarques = getLesMarques();
 			include("vues/v_newProduit.php");
+			break;
+		}
+	case 'insertProduit' :
+		{
+			include("vues/v_insertProduit.php");
 			break;
 		}
 	case 'ajouterAuPanier' :
 	{
 		$idProduit=$_REQUEST['produit'];
 		
-		$ok = ajouterAuPanier($idProduit);
+		$ok = ajouterAuPanier($idProduit, $_POST['quantite'], $_POST['contenance']);
 		if(!$ok)
 		{
 			$message = "Cet article est déjà dans le panier !!";

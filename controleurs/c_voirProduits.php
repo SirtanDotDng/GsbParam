@@ -27,6 +27,7 @@ switch($action)
 			$notei = (int) $note['note'];
 			$notef = floatval($note['note']);
 			$lesContenances = getContenanceProduit($id);
+			$lesAvis = getAvisProduit2($id);
 			include("vues/v_produit.php");
 			break;
 		}

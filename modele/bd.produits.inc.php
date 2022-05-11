@@ -237,6 +237,15 @@ include_once 'bd.inc.php';
 		return $res;
 	}
 
+	function getAvisProduit2($produit){
+		$monPdo = connexionPDO();
+		$req = "SELECT Note, Avis, utilisateur.Nom, utilisateur.Prenom FROM note INNER JOIN utilisateur ON ID_Utilisateur = utilisateur.ID WHERE ID_Produit = ? ORDER BY note DESC LIMIT 2";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($produit));
+		$res = $query -> fetchAll();
+
+		return $res;
+	}
 
 	function newpass($unMail, $unPass){
 
@@ -258,7 +267,7 @@ include_once 'bd.inc.php';
 
 			if(password_verify($unPass, $res['Password'])){
 
-			$req = "SELECT ID, ID_Role FROM utilisateur WHERE Mail = ?";
+			$req = "SELECT ID, Nom, Adresse, Code_Postal, Ville, ID_Role FROM utilisateur WHERE Mail = ?";
 			$query = $monPdo -> prepare($req);
 			$query -> execute(array($unMail));
 			$res = $query -> fetch();
@@ -266,6 +275,10 @@ include_once 'bd.inc.php';
 			if($res){
 				$_SESSION['id'] = $res['ID'];
 				$_SESSION['role'] = $res['ID_Role'];
+				$_COOKIE['nom'] = $res['Nom'];
+				$_COOKIE['adresse'] = $res['Adresse'];
+				$_COOKIE['cp'] = $res['Code_Postal'];
+				$_COOKIE['ville'] = $res['Ville'];
 			}
 		}
 	}
@@ -273,12 +286,20 @@ include_once 'bd.inc.php';
 	function register($nom, $prenom, $mail, $password1, $password2, $telephone, $adresse, $ville, $cp){
 
 		if($password1 == $password2) {
-		$password = password_hash($password1, PASSWORD_DEFAULT);
-		$monPdo = connexionPDO();
-		$req = "INSERT INTO utilisateur (Nom, Prenom, Telephone, Code_Postal, Ville, Adresse, Mail, Password) VALUES (?,?,?,?,?,?,?,?)";
-		$query = $monPdo -> prepare($req);
-		$query -> execute(array($nom, $prenom, $telephone, $cp, $ville, $adresse, $mail, $password));
+			$password = password_hash($password1, PASSWORD_DEFAULT);
+			$monPdo = connexionPDO();
+			$req = "INSERT INTO utilisateur (Nom, Prenom, Telephone, Code_Postal, Ville, Adresse, Mail, Password, ID_Role) VALUES (?,?,?,?,?,?,?,?,2)";
+			$query = $monPdo -> prepare($req);
+			$query -> execute(array($nom, $prenom, $telephone, $cp, $ville, $adresse, $mail, $password));
 		}
+	}
+
+	function newProduct($nom, $description, $marque, $categorie, $quantite, $image){
+
+		$monPdo = connexionPDO();
+		$req = "INSERT INTO produit (Nom, Image, Description, Quantite, ID_Marque, ID_Categorie) VALUES (?,?,?,?,?,?)";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($nom, $image, $description, $quantite, $marque, $categorie));
 	}
 
 	function isLogged() {
@@ -313,5 +334,14 @@ include_once 'bd.inc.php';
 			$res = $query -> fetch();
 			
 			return $res;
+	}
+
+	function getLesMarques(){
+		$monPdo = connexionPDO();
+		$req = "SELECT ID, Nom FROM marque";
+		$res = $monPdo->query($req);
+		$lesLignes = $res->fetchAll();
+		
+		return $lesLignes;
 	}
 ?>

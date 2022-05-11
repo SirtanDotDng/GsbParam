@@ -1,14 +1,22 @@
 <div class="product">
     <section class="newrap">
 <h1> Ajout Produit </h1>
-      <form id="produitform" onsubmit="return redirect()" class="saisieProduit" action=" " method="post">
+      <form id="produitform" onsubmit="return redirect()" class="saisieProduit" action="index.php?uc=administrer&action=insertProduit" method="post" enctype="multipart/form-data">
     <div>
         <label for="nom">Nom</label>
         <input class="casesinput" type="text" name="nom" id="nom" required/>
     </div>
     <div>
-        <label for="decription">Decription</label>
-        <textarea class="avis" type="text" name="decription" id="decription" required></textarea>
+        <label for="description">Description</label>
+        <textarea class="avis" type="text" name="description" id="description" rows="4" required></textarea>
+    </div>
+    <div>
+        <label for="marque">Marque</label>
+        <select name="marque" id="marque" required>
+            <?php foreach($lesMarques as $laMarque){ ?>
+            	<option value="<?php echo $laMarque['ID'];?>"><?php echo $laMarque['Nom'];?></option>
+      		<?php } ?>
+        </select>
     </div>
     <div>
         <label for="categorie">Catégorie</label>
@@ -37,20 +45,23 @@
             </tr>
             <tr id='row1'>
                 <td>
-                <input class="addcontenance" type="button" id="addRow" value="Ajouter contenance"/>
+                <input class="button" type="button" id="addRow" value="Ajouter"/>
                 </td>
                 <td>
-                    <input min="1" name="prix1" type="text">
+                    <input min="0" name="prix1" type="number" step="0.01">
                 </td>
                 <td>
-                    <input type="text" min="0" name="contenance1" id="contenance1" required/>
+                    <input type="number" min="1" name="contenance1" id="contenance1" required/>
                 </td>
                 <td>
-                    <select type="text" min="0" name="unite1" id="unite1" required>
+                    <select type="text" name="unite1" id="unite1" required>
                         <option value=""></option>
                         <option value="mL">mL</option>
                         <option value="cL">cL</option>
                         <option value="L">L</option>
+                        <option value="mg">mg</option>
+                        <option value="g">g</option>
+                        <option value="Kg">Kg</option>
                     </select>
                 </td>
             </tr>
@@ -60,7 +71,7 @@
     <div class="hline"></div>
     
     <div style="text-align:center">
-	    <input id="save" style="margin-top:1%; font-size:14px" class="addechantillon" type="submit" name="bouton" value="Enregistrer">
+	    <input id="save" style="margin-top:1%; font-size:14px" class="button" type="submit" name="submit" value="Enregistrer">
 	</div>
 </section>
 
@@ -92,7 +103,7 @@
                 
                     button.setAttribute('type', 'button');
                     button.setAttribute('value', 'Supprimer');
-                    button.setAttribute('class', 'delcontenance');
+                    button.setAttribute('class', 'disconnect');
                     button.setAttribute('onclick', 'removeRow(this)');
                     button.setAttribute('id','button'+id);
                     td.appendChild(button);
@@ -116,7 +127,7 @@
                     
                     td.appendChild(contenance);
                 }
-                if (c == 3 ) {
+                if (c == 3) {
                     var unite = document.createElement('select');
                     unite.setAttribute('value', '');
                     unite.setAttribute('name','unite'+id);
@@ -140,6 +151,21 @@
                     var option = document.createElement('option');
                     option.setAttribute('value','L');
                     option.text ='L';
+                    unite.appendChild(option);
+
+                    var option = document.createElement('option');
+                    option.setAttribute('value','mg');
+                    option.text ='mg';
+                    unite.appendChild(option);
+
+                    var option = document.createElement('option');
+                    option.setAttribute('value','g');
+                    option.text ='g';
+                    unite.appendChild(option);
+
+                    var option = document.createElement('option');
+                    option.setAttribute('value','Kg');
+                    option.text ='Kg';
                     unite.appendChild(option);
 
                     td.appendChild(unite);

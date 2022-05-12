@@ -294,12 +294,40 @@ include_once 'bd.inc.php';
 		}
 	}
 
+	function getProductId(){
+
+		$monPdo = connexionPDO();
+		$req = "SELECT ID FROM produit";
+		$res = $monPdo -> query($req);
+		$lignes = $res -> fetchAll();
+
+		$i = 0;
+		$id = 0;
+		$stop = false;
+		foreach($lignes as $ligne){
+			if(!isset($ligne) && !$stop){
+				$id = $i;
+				$stop = true;
+			}
+			$i++;
+		}
+		return $id;
+	}
+
 	function newProduct($nom, $description, $marque, $categorie, $quantite, $image){
 
 		$monPdo = connexionPDO();
-		$req = "INSERT INTO produit (Nom, Image, Description, Quantite, ID_Marque, ID_Categorie) VALUES (?,?,?,?,?,?)";
+		$req = "INSERT INTO produit (ID, Nom, Image, Description, Quantite, ID_Marque, ID_Categorie) VALUES (?,?,?,?,?,?,?)";
 		$query = $monPdo -> prepare($req);
-		$query -> execute(array($nom, $image, $description, $quantite, $marque, $categorie));
+		$query -> execute(array(getProductId() ,$nom, $image, $description, $quantite, $marque, $categorie));
+	}
+
+	function insertContenance($unite, $quantite, $prix){
+
+		$monPdo = connexionPDO();
+		$req = "INSERT INTO contenance (Unite, Quantite, Prix, ID_Produit) VALUES (?,?,?,?)";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($unite, $quantite, $prix, (getProductId()-1)));
 	}
 
 	function isLogged() {

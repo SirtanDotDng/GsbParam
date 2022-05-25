@@ -10,6 +10,9 @@
 
  * @package  GsbParam\util
 */
+
+use function PHPSTORM_META\type;
+
 /**
  * Initialise le panier
  *
@@ -31,6 +34,8 @@ function initPanier()
 function supprimerPanier()
 {
 	unset($_SESSION['produits']);
+	unset($_SESSION['quantite']);
+	unset($_SESSION['contenance']);
 }
 /**
  * Ajoute un produit au panier
@@ -45,7 +50,7 @@ function supprimerPanier()
 function ajouterAuPanier($idProduit, $quantite, $contenance)
 {
 	$ok = true;
-	if(in_array($idProduit,$_SESSION['produits'])){
+	if(in_array($contenance,$_SESSION['contenance'])){
 		$ok = false;
 	}
 	else{
@@ -66,7 +71,6 @@ function ajouterAuPanier($idProduit, $quantite, $contenance)
 function getLesIdProduitsDuPanier()
 {
 	return $_SESSION['produits'];
-
 }
 /**
  * Retourne le nombre de produits du panier
@@ -76,6 +80,15 @@ function getLesIdProduitsDuPanier()
  
  * @return int $n
 */
+
+function getLesProduitsDuPanier()
+{
+	$panier = array();
+	for($i=0; $i<count($_SESSION['produits']); $i++){
+		$panier[]= array($_SESSION['produits'][$i],$_SESSION['quantite'][$i],$_SESSION['contenance'][$i]);
+	}
+	return $panier;
+}
 
 function nbProduitsDuPanier()
 {

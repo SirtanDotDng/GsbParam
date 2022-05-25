@@ -97,6 +97,20 @@ switch($action)
 		}
 		break;
 	}
+
+	case 'gestionCommandes' :
+		{
+			$lesCommandes = getLesCommandes();
+			include("vues/v_adminCommandes.php");
+			break;
+		}
+	case 'gestionCommande' :
+		{
+			$lesCommandes = getLesProduitsCommande($_GET['id']);
+			var_dump($lesCommandes);
+			include("vues/v_adminCommande.php");
+			break;
+		}
 }
 ?>
 

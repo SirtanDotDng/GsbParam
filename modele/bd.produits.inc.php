@@ -123,7 +123,7 @@ include_once 'bd.inc.php';
 	 * @param array $lesIdProduit tableau associatif contenant les id des produits commandés
 	 
 	*/
-	function creerCommande($nom,$rue,$cp,$ville,$mail, $lesIdProduit )
+	function creerCommande($nom,$rue,$cp,$ville,$mail)
 	{
 		try 
 		{
@@ -135,14 +135,30 @@ include_once 'bd.inc.php';
 		$maxi = $laLigne['maxi'] ;// on place le dernier id de commande dans $maxi
 		$idCommande = $maxi+1; // on augmente le dernier id de commande de 1 pour avoir le nouvel idCommande
 		$date = date('Y/m/d'); // récupération de la date système
-		$req = "insert into commande values ('$idCommande','$date','$nom','$rue','$cp','$ville','$mail')";
-		$res = $monPdo->exec($req);
-		// insertion produits commandés
-		foreach($lesIdProduit as $unIdProduit)
-		{
-			$req = "insert into contenir values ('$idCommande','$unIdProduit')";
-			$res = $monPdo->exec($req);
+		$req = "insert into commande values (?,?,?,?,?,?,?,?,?)";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($idCommande, $date, 0, $_SESSION['id'], $nom, $rue, $cp, $ville, $mail));
 		}
+		catch (PDOException $e) 
+		{
+        print "Erreur !: " . $e->getMessage();
+        die();
+		}
+	}
+
+	function attribuerCommande($idProduit,$quantite,$contenance)
+	{
+		try 
+		{
+        $monPdo = connexionPDO();
+		// on récupère le dernier id de commande
+		$req = 'select max(id) as maxi from commande';
+		$res = $monPdo->query($req);
+		$laLigne = $res->fetch();
+		$idCommande = $laLigne['maxi'] ;
+		$req = "insert into concerner (Quantite, ID_Produit, ID_Contenance, ID_Commande) values (?,?,?,?)";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($quantite, $idProduit, $contenance, $idCommande));
 		}
 		catch (PDOException $e) 
 		{
@@ -267,7 +283,7 @@ include_once 'bd.inc.php';
 
 			if(password_verify($unPass, $res['Password'])){
 
-			$req = "SELECT ID, Nom, Adresse, Code_Postal, Ville, ID_Role FROM utilisateur WHERE Mail = ?";
+			$req = "SELECT ID, Nom, Mail, Adresse, Code_Postal, Ville, ID_Role FROM utilisateur WHERE Mail = ?";
 			$query = $monPdo -> prepare($req);
 			$query -> execute(array($unMail));
 			$res = $query -> fetch();
@@ -275,10 +291,11 @@ include_once 'bd.inc.php';
 			if($res){
 				$_SESSION['id'] = $res['ID'];
 				$_SESSION['role'] = $res['ID_Role'];
-				$_COOKIE['nom'] = $res['Nom'];
-				$_COOKIE['adresse'] = $res['Adresse'];
-				$_COOKIE['cp'] = $res['Code_Postal'];
-				$_COOKIE['ville'] = $res['Ville'];
+				$_SESSION['nom'] = $res['Nom'];
+				$_SESSION['adresse'] = $res['Adresse'];
+				$_SESSION['cp'] = $res['Code_Postal'];
+				$_SESSION['ville'] = $res['Ville'];
+				$_SESSION['mail'] = $res['Mail'];
 			}
 		}
 	}
@@ -371,5 +388,24 @@ include_once 'bd.inc.php';
 		$lesLignes = $res->fetchAll();
 		
 		return $lesLignes;
+	}
+
+	function getLesCommandes(){
+		$monPdo = connexionPDO();
+		$req = "SELECT * FROM commande";
+		$res = $monPdo->query($req);
+		$lesLignes = $res->fetchAll();
+		
+		return $lesLignes;
+	}
+
+	function getLesProduitsCommande($id){
+		$monPdo = connexionPDO();
+		$req = "SELECT * FROM concerner INNER JOIN produit ON concerner.ID_Produit = produit.ID INNER JOIN contenance ON concerner.ID_Contenance = contenance.ID WHERE ID_Commande = ?";
+		$query = $monPdo -> prepare($req);
+		$query -> execute(array($id));
+		$res = $query -> fetch();
+		
+		return $res;
 	}
 ?>

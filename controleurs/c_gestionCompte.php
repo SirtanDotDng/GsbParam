@@ -15,7 +15,7 @@ switch($action)
 	case 'checkConnexion':
 	{
 		login($_POST["mail"], $_POST["password"]);
-		header("Location:http://localhost/leroy/GsbParam/index.php?uc=accueil");
+		header("Location:index.php?uc=accueil");
 		break;
 	}
 
@@ -23,7 +23,7 @@ switch($action)
 		{
 			register($_POST["nom"], $_POST['prenom'], $_POST["email"], $_POST["password"], $_POST['password2'], $_POST['tel'], $_POST['adresse'], $_POST['ville'], $_POST['cp']);
 			login($_POST['email'], $_POST['password']);
-			header("Location:http://localhost/leroy/GsbParam/index.php?uc=accueil");
+			header("Location:index.php?uc=accueil");
 			break;
 		}
 	case 'nosProduits':
